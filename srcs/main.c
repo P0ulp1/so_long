@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:58 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/01 14:09:59 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:23:04 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ int	main(int argc, char *argv[])
 	
 	if (check_args(argc, argv) == 1)
 		return (1);
-	ft_printf("Args are good.\n");
 	if (is_map_file_existing(argv[1]) == 1)
 		return (1);
-	ft_printf("Map file is existing.\n");
 	fd = open(argv[1], O_RDONLY);
 	is_map_rectangle(fd);
 	close(fd);
@@ -35,6 +33,9 @@ int	main(int argc, char *argv[])
 	close(fd);
 	fd = open(argv[1], O_RDONLY);
 	check_map_walls(fd, nlines);
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
+	check_map_components(fd);
 	close(fd);
 	return (0);
 }

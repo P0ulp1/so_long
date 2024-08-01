@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   map_parsing_walls.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:21:29 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/01 14:21:23 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:34:26 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	is_map_rectangle(int fd)
 			return (1);
 		}
 	}
-	ft_printf("Map is rectangle.\n");
 	return (0);
 }
 
@@ -60,7 +59,7 @@ int	only_valid_map_components(int fd)
 			{
 				if (line[i] != '0' && line[i] != '1' && line[i] != 'E' && line[i] != 'C' && line[i] != 'P' && line[i] != '\n')
 				{
-					ft_printf("Error\nMap contains invalid components\n");
+					ft_printf("Error\nMap contains invalid components.\n");
 					return (1);
 				}
 				i++;
@@ -88,7 +87,7 @@ int	check_map_walls(int fd, int map_line_count)
 	error += check_wall_first_and_last_line(fd);
 	if (error > 0)
 	{
-		ft_printf("Error\nThe map is not surrounded by walls. Error: %d\n", error);
+		ft_printf("Error\nThe map is not surrounded by walls.\n");
 		return (1);
 	}
 	else
