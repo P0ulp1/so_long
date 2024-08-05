@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:21:29 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/01 15:34:26 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:32:50 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,43 @@
 int	is_map_rectangle(int fd)
 {
 	char		*line;
-	int			end_of_file;
+	char		*first_line;
 	size_t		line_len;
 
-	line = NULL;
-	end_of_file = 0;
+	line = "";
 	if (read(fd, line, 1) == 0 || read(fd, line, 0) == -1)
 	{
 		ft_printf("Error\nInvalid permissions on map file AND/OR map is empty.\n");
 		return (1);
 	}
-	line_len = ft_strlen(get_next_line(fd));
-	while (end_of_file != 1)
+	first_line = get_next_line(fd);
+	line_len = ft_strlen(first_line);
+	free(first_line);
+	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			end_of_file = 1;
+			break;
 		else if (ft_strlen(line) != line_len)
 		{
 			ft_printf("Error\nThe map is not rectangular.\n");
 			return (1);
 		}
+		free(line);
 	}
 	return (0);
 }
 
 int	only_valid_map_components(int fd)
 {
-	char	*line;
-	int		end_of_file;
+	char	*line;	
 	int		i;
 
-	end_of_file = 0;
-	while (end_of_file != 1)
+	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			end_of_file = 1;
+			break;
 		else
 		{
 			i = 0;
@@ -65,6 +65,7 @@ int	only_valid_map_components(int fd)
 				i++;
 			}
 		}
+		free(line);
 	}
 	return (0);
 }
@@ -83,6 +84,7 @@ int	check_map_walls(int fd, int map_line_count)
 		if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
 			error++;
 		map_line_count--;
+		free(line);
 	}
 	error += check_wall_first_and_last_line(fd);
 	if (error > 0)
@@ -109,6 +111,7 @@ int	check_wall_first_and_last_line(int fd)
 			error++;
 		i++;
 	}
+	free(line);
 	return (error);
 }
 
@@ -126,5 +129,6 @@ int	map_number_line(int fd)
 		if (line == NULL)
 			return (count);
 		count++;
+		free(line);
 	}
 }

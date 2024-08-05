@@ -6,13 +6,13 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/01 12:26:55 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:16:19 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	check_args(int argc, char *argv[])
+int	check_args(int argc, char *map_file)
 {
 	int		i;
 	char	*to_compare;
@@ -25,13 +25,17 @@ int	check_args(int argc, char *argv[])
 		return (1);
 	}
 	map_extension = ".ber";
-	while (argv[1][i] != '.')
+	while (map_file[i] != '.')
 		i++;
-	to_compare = ft_substr(argv[1], i, 4);
+	to_compare = ft_substr(map_file, i, 4);
 	if (ft_strncmp(map_extension, to_compare, 4) == 0)
+	{
+		free(to_compare);
 		return (0);
+	}
 	else
 	{
+		free(to_compare);
 		ft_printf("Error\nThe map file doesn't have a valid extension (.ber)\n");
 		return (1);
 	}
