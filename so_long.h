@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/02 12:56:06 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/05 11:48:04 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 # define SO_LONG_H
 
 # define TILE_SIZE 100
+// # define HEIGHT get_map_y(argv[1])
+// # define WIDTH get_map_x(argv[1])
+
+# define HEIGHT 500
+# define WIDTH 500
+
+typedef struct s_img //struct holding images variables//
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
 
 typedef struct s_data //struct holding mlx pointers//
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_img	img;
 }	t_data;
 
 # include "./minilibx-linux/mlx.h" //mlx//
@@ -45,7 +60,11 @@ void	parse_map_components(char *line, int *collectible, int *exit, int *player);
 int		reset_file_pointer(int fd, char *map_file); //Close and reopen the given fd/file to reset the pointer//
 int		master_map_parsing(int argc, char *map_file); //Master function for all the above ones//
 ////initialization.c////
-int	get_map_x(char *filename); //Returns the number of tiles on the X axis//
-int	get_map_y(char *filename); //Returns the number of tiles on the Y axis//
-int	handle_keypress(int keysym, t_data *data);
+int		get_map_x(char *filename); //Returns the number of tiles on the X axis//
+int		get_map_y(char *filename); //Returns the number of tiles on the Y axis//
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color); //Allow to push a pixel on an image instead of the screen//
+////graphics.c////
+int		render(t_data *data);
+void	render_square(t_img *img);
+int	user_input(int keysym, t_data *data);
 #endif

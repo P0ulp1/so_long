@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 12:29:25 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/02 13:06:51 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/05 11:28:21 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,12 @@ int	get_map_y(char *filename)
 			return (y_len * TILE_SIZE);
 		y_len++;
 	}
+}
+
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
+
+	pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(int *)pixel = color;
 }

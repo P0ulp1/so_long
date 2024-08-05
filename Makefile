@@ -6,7 +6,7 @@
 #    By: phautena <phautena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 10:51:34 by phautena          #+#    #+#              #
-#    Updated: 2024/08/02 12:55:48 by phautena         ###   ########.fr        #
+#    Updated: 2024/08/05 11:34:49 by phautena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc -Wall -Wextra -Werror -ggdb -I./minilibx-linux
 
 SRC_DIR = ./srcs/
 
-SRC_FILES = main.c check_args.c map_parsing_walls.c map_parsing_components.c initialization.c
+SRC_FILES = main.c check_args.c map_parsing_walls.c map_parsing_components.c initialization.c graphics.c
 
 SRC = ${addprefix ${SRC_DIR},${SRC_FILES}}
 
