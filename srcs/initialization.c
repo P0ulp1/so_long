@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 12:29:25 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/05 11:28:21 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:02:18 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 	pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(int *)pixel = color;
+}
+
+int	handle_input(int keycode, t_data *data)
+{
+	if (keycode == XK_Escape)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
+	return (0);
 }

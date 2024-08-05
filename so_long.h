@@ -6,34 +6,44 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/05 11:48:04 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:00:11 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define TILE_SIZE 100
-// # define HEIGHT get_map_y(argv[1])
-// # define WIDTH get_map_x(argv[1])
-
+# define TILE_SIZE 16
+//# define HEIGHT get_map_y(argv[1])
+//# define WIDTH get_map_x(argv[1])
 # define HEIGHT 500
 # define WIDTH 500
+# define MLX_ERROR 1
 
 typedef struct s_img //struct holding images variables//
 {
-	void	*mlx_img;
+	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 }	t_img;
+
+typedef struct s_backgnd
+{
+	void	*bck_ptr;
+	char	*bck_addr;
+	int		height;
+	int		width;
+}	t_bckgnd;
 
 typedef struct s_data //struct holding mlx pointers//
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_bckgnd	background;
 }	t_data;
 
 # include "./minilibx-linux/mlx.h" //mlx//
@@ -63,8 +73,9 @@ int		master_map_parsing(int argc, char *map_file); //Master function for all the
 int		get_map_x(char *filename); //Returns the number of tiles on the X axis//
 int		get_map_y(char *filename); //Returns the number of tiles on the Y axis//
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color); //Allow to push a pixel on an image instead of the screen//
+int		handle_input(int keycode, t_data *data); //Look for Escape key and exit the game//
 ////graphics.c////
 int		render(t_data *data);
 void	render_square(t_img *img);
-int	user_input(int keysym, t_data *data);
+void	render_background(t_data *data);
 #endif
