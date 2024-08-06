@@ -6,16 +6,14 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 14:56:17 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:58:44 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define TILE_SIZE 16
-# define HEIGHT 500
-# define WIDTH 500
+# define TILE_SIZE 64
 # define MLX_ERROR 1
 # define EXIT 'E'
 # define PLAYER 'P'
@@ -41,11 +39,19 @@ typedef struct s_map
 	int			player;
 }	t_map;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		height;
+	int		width;
+}	t_img;
+
 typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_map	map;
+	t_img	backgroud;
 }	t_game;
 
 ////init_checks.c////
@@ -62,12 +68,12 @@ int		master_check(t_game *game, char *map_filename, int argc); //Perform all the
 void	count_rows(char *map_file, t_game *game); //Calculate the number of rows on the map//
 ////utilities.c////
 void	ft_free(t_game *game);
-
-
-
-
-int	handle_keypress(int keysym, t_game *game);
-int	initialize(t_game *game);
+////graphics.c////
 int	render(t_game *game);
+int	render_background(t_game *game);
+////game.c////
+int	handle_escape(int keysym, t_game *game);
+int	initialize(t_game *game);
+
 
 #endif
