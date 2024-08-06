@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:58 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/05 14:44:14 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:03:31 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,12 @@
 
 int	main(int argc, char *argv[])
 {
-	t_data	data;
-
-	if (master_map_parsing(argc, argv[1]) == 1)
-		return (1);
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
-		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "so_long");
-	if (data.win_ptr == NULL)
+	t_game	game;
+	
+	if (master_check(&game, argv[1], argc) == 1)
 	{
-		free(data.mlx_ptr);
-		return (1);
+		//Create ft_free function//
+		return (MLX_ERROR);
 	}
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_loop(data.mlx_ptr);
-	free(data.mlx_ptr);
 	return (0);
 }

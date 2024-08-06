@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/05 15:00:11 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:03:39 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,13 @@
 # define SO_LONG_H
 
 # define TILE_SIZE 16
-//# define HEIGHT get_map_y(argv[1])
-//# define WIDTH get_map_x(argv[1])
 # define HEIGHT 500
 # define WIDTH 500
 # define MLX_ERROR 1
-
-typedef struct s_img //struct holding images variables//
-{
-	void	*img_ptr;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		height;
-	int		width;
-}	t_img;
-
-typedef struct s_backgnd
-{
-	void	*bck_ptr;
-	char	*bck_addr;
-	int		height;
-	int		width;
-}	t_bckgnd;
-
-typedef struct s_data //struct holding mlx pointers//
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_bckgnd	background;
-}	t_data;
+# define EXIT 'E'
+# define PLAYER 'P'
+# define COIN 'C'
+# define WALL '1'
 
 # include "./minilibx-linux/mlx.h" //mlx//
 # include "./Libft/libft.h" //libft//
@@ -53,29 +29,34 @@ typedef struct s_data //struct holding mlx pointers//
 # include <fcntl.h> //open//
 # include <X11/X.h> //mlx events//
 # include <X11/keysym.h> //mlx keysyms//
+# include <stdio.h> //size_t//
 
-//Parsing map files//
-////check_args.c////
+typedef struct s_map
+{
+	char		**map;
+	size_t		rows;
+	size_t		columns;
+	int			coins;
+	int			exit;
+	int			player;
+}	t_map;
+
+typedef struct s_game
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_map	map;
+}	t_game;
+
+////init_checks.c////
 int		check_args(int argc, char *map_file); //Check number of args and map file extensions//
 int		is_map_file_existing(char *map_file); //Check if the map file is existing in the current dir//
-////map_parsing_walls.c////
-int		is_map_rectangle(int fd); //Check if the map is rectangle//
-int		only_valid_map_components(int fd); //Check if the map only contains valid components//
-int		map_number_line(int fd); //Return the number of line the map is//
-int		check_map_walls(int fd, int map_line_count); //Check if the map is surrounded by walls//
-int		check_wall_first_and_last_line(int fd); //Helper function for the top and bottom walls//
-////map_parsing_components.c////
-int		check_map_components(int fd); //Count if the number of components is the right one (no dup)//
-void	parse_map_components(char *line, int *collectible, int *exit, int *player); //Helper function for the number of components//
-int		reset_file_pointer(int fd, char *map_file); //Close and reopen the given fd/file to reset the pointer//
-int		master_map_parsing(int argc, char *map_file); //Master function for all the above ones//
-////initialization.c////
-int		get_map_x(char *filename); //Returns the number of tiles on the X axis//
-int		get_map_y(char *filename); //Returns the number of tiles on the Y axis//
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color); //Allow to push a pixel on an image instead of the screen//
-int		handle_input(int keycode, t_data *data); //Look for Escape key and exit the game//
-////graphics.c////
-int		render(t_data *data);
-void	render_square(t_img *img);
-void	render_background(t_data *data);
+char	**fill_map_struct(char *map_file, t_game *game); //Fill the map game object//
+void	fill_game_struct(t_game *game); //Fill the whole game struct//
+int		check_map_components(t_game *game); //Fill the components found in the map, and check if the number is good//
+////other_checks.c////
+int		check_walls(t_game *game); //Check if the map is entirely surrounded by walls// 
+int		master_check(t_game *game, char *map_filename, int argc); //Perform all the check/initializations above//
+
+
 #endif
