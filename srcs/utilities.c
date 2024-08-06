@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 10:22:58 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 14:57:34 by phautena         ###   ########.fr       */
+/*   Created: 2024/08/06 14:55:52 by phautena          #+#    #+#             */
+/*   Updated: 2024/08/06 14:56:06 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	main(int argc, char *argv[])
+void	ft_free(t_game *game)
 {
-	t_game	game;
-	
-	if (master_check(&game, argv[1], argc) == MLX_ERROR)
-	{
-		ft_free(&game);
-		return (MLX_ERROR);
-	}
-	return (0);
+	int	i;
+
+	i = game->map.rows - 1;
+	while (i != -1)
+		free(game->map.map[i--]);
+	free(game->map.map);
 }

@@ -6,7 +6,7 @@
 #    By: phautena <phautena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 10:51:34 by phautena          #+#    #+#              #
-#    Updated: 2024/08/06 11:58:57 by phautena         ###   ########.fr        #
+#    Updated: 2024/08/06 14:56:47 by phautena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc -Wall -Wextra -Werror -ggdb -I./minilibx-linux
 
 SRC_DIR = ./srcs/
 
-SRC_FILES = main.c init_checks.c other_checks.c
+SRC_FILES = main.c init_checks.c other_checks.c utilities.c
 
 SRC = ${addprefix ${SRC_DIR},${SRC_FILES}}
 

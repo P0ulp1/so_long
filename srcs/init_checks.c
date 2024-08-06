@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   init_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 11:44:55 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:47:45 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_args(int argc, char *map_file)
 	if (argc != 2)
 	{
 		ft_printf("Error\nInvalid number of arguments.\n");
-		return (1);
+		return (MLX_ERROR);
 	}
 	map_extension = ".ber";
 	while (map_file[i] != '.')
@@ -37,20 +37,28 @@ int	check_args(int argc, char *map_file)
 	{
 		free(to_compare);
 		ft_printf("Error\nThe map file doesn't have a valid extension (.ber)\n");
-		return (1);
+		return (MLX_ERROR);
 	}
 }
 
 int	is_map_file_existing(char *map_file)
 {
 	int		fd;
+	char	*buffer;
 
 	fd = open(map_file, O_RDONLY);
+	buffer = NULL;
 	if (fd < 0)
 	{
 		ft_printf("Error\nMap file not found.\n");
 		close(fd);
-		return (1);
+		return (MLX_ERROR);
+	}
+	if (read(fd, &buffer, 0) == -1 || read(fd, &buffer, 1) != 1)
+	{
+		ft_printf("Error\nThe map file is not readable and/or empty.\n");	
+		close(fd);
+		return (MLX_ERROR);
 	}
 	close(fd);
 	return (0);
@@ -58,28 +66,25 @@ int	is_map_file_existing(char *map_file)
 
 char	**fill_map_struct(char *map_file, t_game *game)
 {
-	int		fd;
-	int		i;
-	int		rows;
-	char	**map;
-	char	*line;
+	int			fd;
+	char		**map;
+	char		*line;
+	size_t		i;
 
+	count_rows(map_file, game);
 	fd = open(map_file, O_RDONLY);
-	rows = 0;
-	while (get_next_line(fd) != NULL)
-		rows++;
-	map = malloc(sizeof(char*));
-	reset_file_pointer(fd, map_file);
+	map = malloc(sizeof(char*) * game->map.rows);
 	i = 0;
-	while (i < rows)
+	while (i < game->map.rows)
 	{
 		line = get_next_line(fd);
 		map[i] = ft_strdup(line);
+		free(line);
 		i++;
 	}
-	free(line);
-	game->map.rows = rows;
-	game->map.columns = ft_strlen(map[0]);	
+	get_next_line(fd);
+	game->map.columns = ft_strlen(map[0]);
+	close(fd);
 	return (map);
 }
 
@@ -96,11 +101,11 @@ void	fill_game_struct(t_game *game)
 
 int		check_map_components(t_game *game)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (game->map.map[i])
+	while (i < game->map.rows)
 	{
 		j = 0;
 		while (game->map.map[i][j])
@@ -116,5 +121,9 @@ int		check_map_components(t_game *game)
 		i++;
 	}
 	if (game->map.exit != 1 || game->map.player != 1 || game->map.coins < 1)
+	{
+		ft_printf("Error\nThe map doesn't have the required elements.\n");
 		return (MLX_ERROR);
+	}
+	return (0);
 }

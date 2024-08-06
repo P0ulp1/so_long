@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 12:03:39 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:56:17 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,19 @@ char	**fill_map_struct(char *map_file, t_game *game); //Fill the map game object
 void	fill_game_struct(t_game *game); //Fill the whole game struct//
 int		check_map_components(t_game *game); //Fill the components found in the map, and check if the number is good//
 ////other_checks.c////
-int		check_walls(t_game *game); //Check if the map is entirely surrounded by walls// 
+int		check_walls_top(t_game *game); //Check if the map is entirely surrounded by walls// 
+int		check_walls_bottom(t_game *game); //Check if the map is entirely surrounded by walls// 
+int		check_walls_middle(t_game *game); //Check if the map is entirely surrounded by walls// 
 int		master_check(t_game *game, char *map_filename, int argc); //Perform all the check/initializations above//
+void	count_rows(char *map_file, t_game *game); //Calculate the number of rows on the map//
+////utilities.c////
+void	ft_free(t_game *game);
 
+
+
+
+int	handle_keypress(int keysym, t_game *game);
+int	initialize(t_game *game);
+int	render(t_game *game);
 
 #endif
