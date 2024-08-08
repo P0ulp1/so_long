@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:15:49 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 16:01:35 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:57:27 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,43 @@
 
 int	render(t_game *game)
 {
-	render_background(game);
+	if (render_map(game) == MLX_ERROR)
+		return (MLX_ERROR);
 	return (0);
 }
 
-int	render_background(t_game *game)
+int	render_map(t_game *game)
 {
 	unsigned long	x;
 	unsigned long	y;
 
-	game->backgroud.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/floor.xpm", &game->backgroud.width, &game->backgroud.height);
-	if (game->backgroud.img_ptr == NULL)
-		return (MLX_ERROR);
 	if (game->win_ptr)
 	{
 		y = 0;
-		while (y < game->map.rows * TILE_SIZE)
+		while (y < game->map.rows)
 		{
 			x = 0;
-			while (x < game->map.columns * TILE_SIZE)
+			while (x < game->map.columns)
 			{
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->backgroud.img_ptr, x, y);
-				x += TILE_SIZE;
+				if (render_tile(game, x, y, game->map.map[y][x]) == MLX_ERROR)
+					return (MLX_ERROR);
+				x++;
 			}
-			y += TILE_SIZE;
+			y++;
 		}
 	}
+	return (0);
+}
+
+int	render_tile(t_game *game, int x, int y, char tile)
+{
+	if (tile == FLOOR && game->backgroud.img_ptr)
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->backgroud.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+	else if (tile == WALL && game->wall.img_ptr)
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->wall.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+	else if (tile == EXIT && game->exit.img_ptr)
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->exit.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+	else if (tile == COLLECTIBLE && game->collectible.img_ptr)
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->collectible.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	return (0);
 }

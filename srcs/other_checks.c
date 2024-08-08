@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:50:40 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 15:52:05 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:05:05 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	master_check(t_game *game, char *map_filename, int argc)
 {
 	size_t 	i;
 
+	fill_game_struct(game);
 	if (check_args(argc, map_filename) == MLX_ERROR || is_map_file_existing(map_filename) == MLX_ERROR)
 		return (MLX_ERROR);
-	fill_game_struct(game);
 	game->map.map = fill_map_struct(map_filename, game);
 	i = 0;
 	while (i < game->map.rows)

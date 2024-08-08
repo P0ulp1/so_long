@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 15:58:44 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:41:24 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # define MLX_ERROR 1
 # define EXIT 'E'
 # define PLAYER 'P'
-# define COIN 'C'
+# define COLLECTIBLE 'C'
 # define WALL '1'
+# define FLOOR '0'
 
 # include "./minilibx-linux/mlx.h" //mlx//
 # include "./Libft/libft.h" //libft//
@@ -34,7 +35,7 @@ typedef struct s_map
 	char		**map;
 	size_t		rows;
 	size_t		columns;
-	int			coins;
+	int			collectible;
 	int			exit;
 	int			player;
 }	t_map;
@@ -52,6 +53,10 @@ typedef struct s_game
 	void	*win_ptr;
 	t_map	map;
 	t_img	backgroud;
+	t_img	wall;
+	t_img	collectible;
+	t_img	player;
+	t_img	exit;
 }	t_game;
 
 ////init_checks.c////
@@ -67,10 +72,12 @@ int		check_walls_middle(t_game *game); //Check if the map is entirely surrounded
 int		master_check(t_game *game, char *map_filename, int argc); //Perform all the check/initializations above//
 void	count_rows(char *map_file, t_game *game); //Calculate the number of rows on the map//
 ////utilities.c////
+int	initialize_xpm(t_game *game);
 void	ft_free(t_game *game);
 ////graphics.c////
 int	render(t_game *game);
-int	render_background(t_game *game);
+int	render_tile(t_game *game, int x, int y, char tile);
+int	render_map(t_game *game);
 ////game.c////
 int	handle_escape(int keysym, t_game *game);
 int	initialize(t_game *game);

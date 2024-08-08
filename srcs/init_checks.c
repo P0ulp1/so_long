@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/06 15:39:52 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:57:31 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,16 @@ void	fill_game_struct(t_game *game)
 {
 	game->map.rows = 0;
 	game->map.columns = 0;
-	game->map.coins = 0;
+	game->map.collectible = 0;
 	game->map.exit = 0;
 	game->map.player = 0;
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
+	game->map.map = NULL;
+	game->backgroud.img_ptr = NULL;
+	game->wall.img_ptr = NULL;
+	game->exit.img_ptr = NULL;
+	game->collectible.img_ptr = NULL;
 }
 
 int		check_map_components(t_game *game)
@@ -114,13 +119,13 @@ int		check_map_components(t_game *game)
 				game->map.exit++;
 			else if (game->map.map[i][j] == PLAYER)
 				game->map.player++;
-			else if (game->map.map[i][j] == COIN)
-				game->map.coins++;
+			else if (game->map.map[i][j] == COLLECTIBLE)
+				game->map.collectible++;
 			j++;
 		}
 		i++;
 	}
-	if (game->map.exit != 1 || game->map.player != 1 || game->map.coins < 1)
+	if (game->map.exit != 1 || game->map.player != 1 || game->map.collectible < 1)
 	{
 		ft_printf("Error\nThe map doesn't have the required elements.\n");
 		return (MLX_ERROR);
