@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:50:40 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/07 11:05:05 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:17:55 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	master_check(t_game *game, char *map_filename, int argc)
 	i = 0;
 	while (i < game->map.rows)
 	{
-		if (ft_strlen(game->map.map[i]) != game->map.columns)
+		if (ft_strlen(game->map.map[i]) - 1 != game->map.columns)
 		{
 			//ft_printf("Len: %d\nColumns: %d\n", ft_strlen(game->map.map[i]), game->map.columns);
 			ft_printf("Error\nThe map file is not rectangle.\n");

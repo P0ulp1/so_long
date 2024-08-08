@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/07 13:57:31 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:28:16 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**fill_map_struct(char *map_file, t_game *game)
 		i++;
 	}
 	get_next_line(fd);
-	game->map.columns = ft_strlen(map[0]);
+	game->map.columns = ft_strlen(map[0]) - 1;
 	close(fd);
 	return (map);
 }
@@ -95,13 +95,15 @@ void	fill_game_struct(t_game *game)
 	game->map.collectible = 0;
 	game->map.exit = 0;
 	game->map.player = 0;
+	game->render_again = 1;
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
 	game->map.map = NULL;
-	game->backgroud.img_ptr = NULL;
+	game->background.img_ptr = NULL;
 	game->wall.img_ptr = NULL;
 	game->exit.img_ptr = NULL;
 	game->collectible.img_ptr = NULL;
+	game->player.player.img_ptr = NULL;
 }
 
 int		check_map_components(t_game *game)

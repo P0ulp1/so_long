@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/07 13:41:24 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:27:35 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@
 # include <X11/keysym.h> //mlx keysyms//
 # include <stdio.h> //size_t//
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		height;
+	int		width;
+}	t_img;
+
+typedef struct s_player
+{
+	unsigned long		x;
+	unsigned long		y;
+	t_img	player;
+}	t_player;
+
 typedef struct s_map
 {
 	char		**map;
@@ -38,25 +52,23 @@ typedef struct s_map
 	int			collectible;
 	int			exit;
 	int			player;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
 }	t_map;
-
-typedef struct s_img
-{
-	void	*img_ptr;
-	int		height;
-	int		width;
-}	t_img;
 
 typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_map	map;
-	t_img	backgroud;
-	t_img	wall;
-	t_img	collectible;
-	t_img	player;
-	t_img	exit;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_map		map;
+	t_img		background;
+	t_img		wall;
+	t_img		collectible;
+	t_img		exit;
+	t_player	player;
+	int			render_again;
 }	t_game;
 
 ////init_checks.c////
@@ -72,15 +84,22 @@ int		check_walls_middle(t_game *game); //Check if the map is entirely surrounded
 int		master_check(t_game *game, char *map_filename, int argc); //Perform all the check/initializations above//
 void	count_rows(char *map_file, t_game *game); //Calculate the number of rows on the map//
 ////utilities.c////
-int	initialize_xpm(t_game *game);
+int		initialize_xpm(t_game *game);
 void	ft_free(t_game *game);
+void	init_player_pos(t_game *game);
 ////graphics.c////
 int	render(t_game *game);
 int	render_tile(t_game *game, int x, int y, char tile);
 int	render_map(t_game *game);
+int	render_background(t_game *game);
+int	render_player(t_game *game);
 ////game.c////
-int	handle_escape(int keysym, t_game *game);
+int	handle_escape(t_game *game);
 int	initialize(t_game *game);
+int	handle_input(int keysym, t_game *game);
+////movement.c////
+int	handle_movement(int keysym, t_game *game);
+int	movement_possible(char direction, t_game *game);
 
 
 #endif
