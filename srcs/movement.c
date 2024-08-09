@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:45:15 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 14:11:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/09 14:15:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	handle_movement(int keysym, t_game *game)
 		game->player.x += 1;
 	else if (keysym == XK_a && movement_possible('L', game) == 0)
 		game->player.x -= 1;
-	//Handle if on special tile//
 	handle_move_tile(game);
 	game->render_again = 1;
 	return (0);
