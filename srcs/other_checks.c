@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:50:40 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/08 13:17:55 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:05:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	check_walls_top(t_game *game)
 	{
 		if (game->map.map[0][i] != WALL)
 		{
+			ft_printf("%c\n", game->map.map[0][i]);
 			ft_printf("Error\nThe map is not surrounded by walls.\n");
 			return (MLX_ERROR);
 		}
@@ -32,7 +33,7 @@ int	check_walls_top(t_game *game)
 int	check_walls_bottom(t_game *game)
 {
 	int	i;
-	
+
 	i = 0;
 	while (game->map.map[game->map.rows - 1][i] != '\n')
 	{
@@ -49,7 +50,7 @@ int	check_walls_bottom(t_game *game)
 int	check_walls_middle(t_game *game)
 {
 	size_t	i;
-	
+
 	i = 1;
 	while (i < game->map.rows)
 	{
@@ -76,7 +77,7 @@ int	master_check(t_game *game, char *map_filename, int argc)
 	{
 		if (ft_strlen(game->map.map[i]) - 1 != game->map.columns)
 		{
-			//ft_printf("Len: %d\nColumns: %d\n", ft_strlen(game->map.map[i]), game->map.columns);
+			// ft_printf("Len: %d\nColumns: %d\n", ft_strlen(game->map.map[i]), game->map.columns);
 			ft_printf("Error\nThe map file is not rectangle.\n");
 			return (MLX_ERROR);
 		}

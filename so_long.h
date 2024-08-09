@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/08 14:27:35 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:08:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ char	**fill_map_struct(char *map_file, t_game *game); //Fill the map game object
 void	fill_game_struct(t_game *game); //Fill the whole game struct//
 int		check_map_components(t_game *game); //Fill the components found in the map, and check if the number is good//
 ////other_checks.c////
-int		check_walls_top(t_game *game); //Check if the map is entirely surrounded by walls// 
-int		check_walls_bottom(t_game *game); //Check if the map is entirely surrounded by walls// 
-int		check_walls_middle(t_game *game); //Check if the map is entirely surrounded by walls// 
+int		check_walls_top(t_game *game); //Check if the map is entirely surrounded by walls//
+int		check_walls_bottom(t_game *game); //Check if the map is entirely surrounded by walls//
+int		check_walls_middle(t_game *game); //Check if the map is entirely surrounded by walls//
 int		master_check(t_game *game, char *map_filename, int argc); //Perform all the check/initializations above//
 void	count_rows(char *map_file, t_game *game); //Calculate the number of rows on the map//
 ////utilities.c////
@@ -91,7 +91,6 @@ void	init_player_pos(t_game *game);
 int	render(t_game *game);
 int	render_tile(t_game *game, int x, int y, char tile);
 int	render_map(t_game *game);
-int	render_background(t_game *game);
 int	render_player(t_game *game);
 ////game.c////
 int	handle_escape(t_game *game);

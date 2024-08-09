@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: phautena <phautena@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 10:51:34 by phautena          #+#    #+#              #
-#    Updated: 2024/08/08 13:53:42 by phautena         ###   ########.fr        #
+#    Updated: 2024/08/09 12:45:13 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = cc -Wall -Wextra -Werror -ggdb -I./minilibx-linux
+CC = cc -Wall -Wextra -ggdb -I./minilibx-linux #Need to re-add -Werror
 
 SRC_DIR = ./srcs/
 
