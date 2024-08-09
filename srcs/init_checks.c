@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/08 14:28:16 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:59:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	is_map_file_existing(char *map_file)
 	}
 	if (read(fd, &buffer, 0) == -1 || read(fd, &buffer, 1) != 1)
 	{
-		ft_printf("Error\nThe map file is not readable and/or empty.\n");	
+		ft_printf("Error\nThe map file is not readable and/or empty.\n");
 		close(fd);
 		return (MLX_ERROR);
 	}
@@ -104,6 +104,7 @@ void	fill_game_struct(t_game *game)
 	game->exit.img_ptr = NULL;
 	game->collectible.img_ptr = NULL;
 	game->player.player.img_ptr = NULL;
+	game->player.movements = 0;
 }
 
 int		check_map_components(t_game *game)

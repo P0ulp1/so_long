@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:15:49 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 13:08:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/09 13:37:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	render_tile(t_game *game, int x, int y, char tile)
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->exit.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == COLLECTIBLE && game->collectible.img_ptr)
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->collectible.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+	else if (tile == PLAYER && game->player.player.img_ptr)
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->background.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	return (0);
 }
 

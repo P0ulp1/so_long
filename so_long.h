@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 13:08:59 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/09 14:06:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	unsigned long		x;
-	unsigned long		y;
-	t_img	player;
+	long int		x;
+	long int		y;
+	long int		movements;
+	t_img			player;
 }	t_player;
 
 typedef struct s_map
@@ -99,6 +100,7 @@ int	handle_input(int keysym, t_game *game);
 ////movement.c////
 int	handle_movement(int keysym, t_game *game);
 int	movement_possible(char direction, t_game *game);
-
+int	display_movements_number(t_game *game);
+void	handle_move_tile(t_game *game);
 
 #endif
