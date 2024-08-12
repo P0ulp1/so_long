@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:04:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 13:26:32 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:29:14 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_game	flood_fill_init(char *filename)
 
 int	flood_fill(t_game *flood_game, long int x, long int y)
 {
-	ft_printf("Tile: %c\n", flood_game->map.map[y][x]);
 	if (flood_game->map.map[y][x] == COLLECTIBLE)
 			flood_game->map.collectible--;
 	if (flood_game->map.map[y][x] == EXIT)
