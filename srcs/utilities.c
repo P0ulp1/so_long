@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:55:52 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 14:09:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/12 11:12:47 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	ft_free(t_game *game)
 {
 	int	i;
 
+	if  (game->win_ptr)
+	{
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		game->win_ptr = NULL;
+	}
 	if (game->map.map != NULL)
 	{
 		i = game->map.rows - 1;
@@ -23,11 +28,26 @@ void	ft_free(t_game *game)
 			free(game->map.map[i--]);
 		free(game->map.map);
 	}
+	mlx_destroy_display(game->mlx_ptr);
 	if (game->mlx_ptr != NULL)
 	{
 		free(game->mlx_ptr);
 		game->mlx_ptr = NULL;
 	}
+}
+
+void	free_images(t_game *game)
+{
+	if (game->background.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->background.img_ptr);
+	if (game->wall.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->wall.img_ptr);
+	if (game->exit.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->exit.img_ptr);
+	if (game->collectible.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->collectible.img_ptr);
+	if (game->player.player.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->player.player.img_ptr);
 }
 
 int	initialize_xpm(t_game *game)
@@ -53,8 +73,8 @@ int	initialize_xpm(t_game *game)
 
 void	init_player_pos(t_game *game)
 {
-	unsigned long x;
-	unsigned long y;
+	long int	x;
+	long int	y;
 
 	if (game->win_ptr)
 	{

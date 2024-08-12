@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: phautena <phautena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 10:51:34 by phautena          #+#    #+#              #
-#    Updated: 2024/08/09 12:45:13 by marvin           ###   ########.fr        #
+#    Updated: 2024/08/12 12:05:23 by phautena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = cc -Wall -Wextra -ggdb -I./minilibx-linux #Need to re-add -Werror
+CC = cc -Wall -Wextra -Werror -ggdb -I./minilibx-linux
 
 SRC_DIR = ./srcs/
 
-SRC_FILES = main.c init_checks.c other_checks.c utilities.c game.c graphics.c movement.c
+SRC_FILES = main.c init_checks.c other_checks.c utilities.c game.c graphics.c movement.c flood_fill.c
 
 SRC = ${addprefix ${SRC_DIR},${SRC_FILES}}
 

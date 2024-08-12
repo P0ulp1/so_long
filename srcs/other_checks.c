@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:50:40 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 13:05:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/12 10:39:55 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_walls_top(t_game *game)
 {
-	size_t	i;
+	long int	i;
 
 	i = 0;
 	while (game->map.map[0][i] != '\n')
@@ -32,7 +32,7 @@ int	check_walls_top(t_game *game)
 
 int	check_walls_bottom(t_game *game)
 {
-	int	i;
+	long int	i;
 
 	i = 0;
 	while (game->map.map[game->map.rows - 1][i] != '\n')
@@ -49,7 +49,7 @@ int	check_walls_bottom(t_game *game)
 
 int	check_walls_middle(t_game *game)
 {
-	size_t	i;
+	long int	i;
 
 	i = 1;
 	while (i < game->map.rows)
@@ -66,7 +66,7 @@ int	check_walls_middle(t_game *game)
 
 int	master_check(t_game *game, char *map_filename, int argc)
 {
-	size_t 	i;
+	long int 	i;
 
 	fill_game_struct(game);
 	if (check_args(argc, map_filename) == MLX_ERROR || is_map_file_existing(map_filename) == MLX_ERROR)
@@ -75,7 +75,7 @@ int	master_check(t_game *game, char *map_filename, int argc)
 	i = 0;
 	while (i < game->map.rows)
 	{
-		if (ft_strlen(game->map.map[i]) - 1 != game->map.columns)
+		if ((long int)ft_strlen(game->map.map[i]) - 1 != game->map.columns)
 		{
 			// ft_printf("Len: %d\nColumns: %d\n", ft_strlen(game->map.map[i]), game->map.columns);
 			ft_printf("Error\nThe map file is not rectangle.\n");

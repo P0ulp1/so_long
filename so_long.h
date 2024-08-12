@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 14:06:04 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/12 11:12:52 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_player
 typedef struct s_map
 {
 	char		**map;
-	size_t		rows;
-	size_t		columns;
+	long int	rows;
+	long int	columns;
 	int			collectible;
 	int			exit;
 	int			player;
@@ -88,6 +88,7 @@ void	count_rows(char *map_file, t_game *game); //Calculate the number of rows on
 int		initialize_xpm(t_game *game);
 void	ft_free(t_game *game);
 void	init_player_pos(t_game *game);
+void	free_images(t_game *game);
 ////graphics.c////
 int	render(t_game *game);
 int	render_tile(t_game *game, int x, int y, char tile);
@@ -97,6 +98,7 @@ int	render_player(t_game *game);
 int	handle_escape(t_game *game);
 int	initialize(t_game *game);
 int	handle_input(int keysym, t_game *game);
+int	handle_cross(t_game *game);
 ////movement.c////
 int	handle_movement(int keysym, t_game *game);
 int	movement_possible(char direction, t_game *game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 13:59:21 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/12 10:38:56 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**fill_map_struct(char *map_file, t_game *game)
 	int			fd;
 	char		**map;
 	char		*line;
-	size_t		i;
+	long int	i;
 
 	count_rows(map_file, game);
 	fd = open(map_file, O_RDONLY);
@@ -109,8 +109,8 @@ void	fill_game_struct(t_game *game)
 
 int		check_map_components(t_game *game)
 {
-	size_t	i;
-	size_t	j;
+	long int	i;
+	long int	j;
 
 	i = 0;
 	while (i < game->map.rows)

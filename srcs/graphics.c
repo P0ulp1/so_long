@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:15:49 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 13:37:39 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/12 10:37:52 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	render(t_game *game)
 
 int	render_map(t_game *game)
 {
-	unsigned long	x;
-	unsigned long	y;
+	long int	x;
+	long int	y;
 
 	y = 0;
 	while (y < game->map.rows)
