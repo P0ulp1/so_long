@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:50:40 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 10:39:55 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:23:40 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ int	master_check(t_game *game, char *map_filename, int argc)
 	{
 		if ((long int)ft_strlen(game->map.map[i]) - 1 != game->map.columns)
 		{
-			// ft_printf("Len: %d\nColumns: %d\n", ft_strlen(game->map.map[i]), game->map.columns);
 			ft_printf("Error\nThe map file is not rectangle.\n");
 			return (MLX_ERROR);
 		}
 		i++;
 	}
 	if (check_map_components(game) == MLX_ERROR || check_walls_top(game) == MLX_ERROR || check_walls_middle(game) == MLX_ERROR || check_walls_bottom(game) == MLX_ERROR)
+		return (MLX_ERROR);
+	if (flood_fill_master(map_filename) == MLX_ERROR)
 		return (MLX_ERROR);
 	return (0);
 }

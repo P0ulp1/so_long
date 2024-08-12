@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 11:12:52 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:21:22 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,8 @@ int	handle_movement(int keysym, t_game *game);
 int	movement_possible(char direction, t_game *game);
 int	display_movements_number(t_game *game);
 void	handle_move_tile(t_game *game);
-
+////flood_fill.c////
+t_game	flood_fill_init(char *filename);
+int	flood_fill(t_game *flood_game, long int x, long int y);
+int	flood_fill_master(char *filename);
 #endif

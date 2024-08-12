@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:55:52 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 11:12:47 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:24:36 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	ft_free(t_game *game)
 			free(game->map.map[i--]);
 		free(game->map.map);
 	}
-	mlx_destroy_display(game->mlx_ptr);
 	if (game->mlx_ptr != NULL)
 	{
+		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
 		game->mlx_ptr = NULL;
 	}
@@ -76,23 +76,20 @@ void	init_player_pos(t_game *game)
 	long int	x;
 	long int	y;
 
-	if (game->win_ptr)
+	y = 0;
+	while (y < game->map.rows)
 	{
-		y = 0;
-		while (y < game->map.rows)
+		x = 0;
+		while (x < game->map.columns)
 		{
-			x = 0;
-			while (x < game->map.columns)
+			if (game->map.map[y][x] == PLAYER)
 			{
-				if (game->map.map[y][x] == PLAYER)
-				{
-					game->player.x = x;
-					game->player.y = y;
-					return;
-				}
-				x++;
+				game->player.x = x;
+				game->player.y = y;
+				return;
 			}
-			y++;
+			x++;
 		}
+		y++;
 	}
 }
