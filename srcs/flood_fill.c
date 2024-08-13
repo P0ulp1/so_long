@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:04:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 14:29:14 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:57:29 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	flood_fill_master(char *filename)
 	flood_fill(&flood_game, flood_game.player.x, flood_game.player.y);
 	if (flood_game.map.collectible != 0 || flood_game.map.exit != 0)
 	{
+		ft_printf("Error\nThe map cannot be completed.\n");
 		ft_free(&flood_game);
 		return (MLX_ERROR);
 	}
