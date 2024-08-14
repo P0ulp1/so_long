@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:50:40 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/13 12:53:13 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:08:39 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	check_walls_top(t_game *game)
 	{
 		if (game->map.map[0][i] != WALL)
 		{
-			ft_printf("%c\n", game->map.map[0][i]);
 			ft_printf("Error\nThe map is not surrounded by walls.\n");
 			return (MLX_ERROR);
 		}
