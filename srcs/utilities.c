@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:55:52 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 13:24:36 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:24:27 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_free(t_game *game)
 {
 	int	i;
 
-	if  (game->win_ptr)
+	if (game->win_ptr)
 	{
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		game->win_ptr = NULL;
@@ -52,19 +52,27 @@ void	free_images(t_game *game)
 
 int	initialize_xpm(t_game *game)
 {
-	game->wall.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/wall.xpm", &game->wall.width, &game->wall.height);
+	game->wall.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"./sprites/wall.xpm", &game->wall.width, &game->wall.height);
 	if (game->wall.img_ptr == NULL)
 		return (MLX_ERROR);
-	game->background.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/floor.xpm", &game->background.width, &game->background.height);
+	game->background.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"./sprites/floor.xpm", &game->background.width,
+			&game->background.height);
 	if (game->background.img_ptr == NULL)
 		return (MLX_ERROR);
-	game->exit.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/exit.xpm", &game->exit.width, &game->exit.height);
+	game->exit.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"./sprites/exit.xpm", &game->exit.width, &game->exit.height);
 	if (game->exit.img_ptr == NULL)
 		return (MLX_ERROR);
-	game->collectible.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/collectible.xpm", &game->collectible.width, &game->collectible.height);
+	game->collectible.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"./sprites/collectible.xpm", &game->collectible.width,
+			&game->collectible.height);
 	if (game->collectible.img_ptr == NULL)
 		return (MLX_ERROR);
-	game->player.player.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/player.xpm", &game->player.player.width, &game->player.player.height);
+	game->player.player.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"./sprites/player.xpm", &game->player.player.width,
+			&game->player.player.height);
 	if (game->player.player.img_ptr == NULL)
 		return (MLX_ERROR);
 	init_player_pos(game);
@@ -86,7 +94,7 @@ void	init_player_pos(t_game *game)
 			{
 				game->player.x = x;
 				game->player.y = y;
-				return;
+				return ;
 			}
 			x++;
 		}

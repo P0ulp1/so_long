@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:15:49 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 10:37:52 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:18:15 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,27 @@ int	render_map(t_game *game)
 int	render_tile(t_game *game, int x, int y, char tile)
 {
 	if (tile == FLOOR && game->background.img_ptr)
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->background.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->background.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == WALL && game->wall.img_ptr)
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->wall.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->wall.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == EXIT && game->exit.img_ptr)
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->exit.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->exit.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == COLLECTIBLE && game->collectible.img_ptr)
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->collectible.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->collectible.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == PLAYER && game->player.player.img_ptr)
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->background.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->background.img_ptr, x * TILE_SIZE, y * TILE_SIZE);
 	return (0);
 }
 
 int	render_player(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->player.player.img_ptr, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->player.player.img_ptr, game->player.x * TILE_SIZE,
+		game->player.y * TILE_SIZE);
 	return (0);
 }

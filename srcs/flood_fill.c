@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:04:37 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/13 12:57:29 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:16:47 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int	flood_fill(t_game *flood_game, long int x, long int y)
 			flood_game->map.collectible--;
 	if (flood_game->map.map[y][x] == EXIT)
 			flood_game->map.exit--;
-	if (flood_game->map.map[y + 1][x] == WALL && flood_game->map.map[y - 1][x] == WALL && flood_game->map.map[y][x + 1] == WALL && flood_game->map.map[y][x - 1] == WALL)
+	if (flood_game->map.map[y + 1][x] == WALL &&
+		flood_game->map.map[y - 1][x] == WALL &&
+		flood_game->map.map[y][x + 1] == WALL &&
+		flood_game->map.map[y][x - 1] == WALL)
 		return (0);
 	else
 	{

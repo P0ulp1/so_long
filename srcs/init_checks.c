@@ -6,7 +6,7 @@
 /*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:19:22 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/12 10:38:56 by phautena         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:24:07 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**fill_map_struct(char *map_file, t_game *game)
 
 	count_rows(map_file, game);
 	fd = open(map_file, O_RDONLY);
-	map = malloc(sizeof(char*) * game->map.rows);
+	map = malloc(sizeof(char *) * game->map.rows);
 	i = 0;
 	while (i < game->map.rows)
 	{
@@ -107,7 +107,7 @@ void	fill_game_struct(t_game *game)
 	game->player.movements = 0;
 }
 
-int		check_map_components(t_game *game)
+int	check_map_components(t_game *game)
 {
 	long int	i;
 	long int	j;
@@ -116,7 +116,7 @@ int		check_map_components(t_game *game)
 	while (i < game->map.rows)
 	{
 		j = 0;
-		while (game->map.map[i][j])
+		while (game->map.map[i][j++])
 		{
 			if (game->map.map[i][j] == EXIT)
 				game->map.exit++;
@@ -124,11 +124,11 @@ int		check_map_components(t_game *game)
 				game->map.player++;
 			else if (game->map.map[i][j] == COLLECTIBLE)
 				game->map.collectible++;
-			j++;
 		}
 		i++;
 	}
-	if (game->map.exit != 1 || game->map.player != 1 || game->map.collectible < 1)
+	if (game->map.exit != 1 || game->map.player != 1
+		|| game->map.collectible < 1)
 	{
 		ft_printf("Error\nThe map doesn't have the required elements.\n");
 		return (MLX_ERROR);

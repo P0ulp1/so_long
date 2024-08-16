@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phautena <phautena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:45:15 by phautena          #+#    #+#             */
-/*   Updated: 2024/08/09 14:15:23 by marvin           ###   ########.fr       */
+/*   Updated: 2024/08/16 10:20:52 by phautena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,26 @@ int	handle_movement(int keysym, t_game *game)
 
 int	movement_possible(char direction, t_game *game)
 {
-	if (direction == 'U' && game->map.map[game->player.y - 1][game->player.x] != WALL)
+	if (direction == 'U'
+		&& game->map.map[game->player.y - 1][game->player.x] != WALL)
 	{
 		if (game->player.y - 1 >= 0)
 			return (display_movements_number(game));
 	}
-	else if (direction == 'D' && game->map.map[game->player.y + 1][game->player.x] != WALL)
+	else if (direction == 'D'
+		&& game->map.map[game->player.y + 1][game->player.x] != WALL)
 	{
 		if (game->player.y + 1 < game->map.rows)
 			return (display_movements_number(game));
 	}
-	else if (direction == 'R' && game->map.map[game->player.y][game->player.x + 1] != WALL)
+	else if (direction == 'R'
+		&& game->map.map[game->player.y][game->player.x + 1] != WALL)
 	{
 		if (game->player.x + 1 < game->map.columns)
 			return (display_movements_number(game));
 	}
-	else if (direction == 'L' && game->map.map[game->player.y][game->player.x - 1] != WALL)
+	else if (direction == 'L'
+		&& game->map.map[game->player.y][game->player.x - 1] != WALL)
 	{
 		if (game->player.x - 1 >= 0)
 			return (display_movements_number(game));
